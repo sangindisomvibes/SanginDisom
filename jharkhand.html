@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>झारखंड संथाल नेटवर्क | Jharkhand Santhal Directory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans">
+
+    <!-- Global Navigation Menu -->
+    <nav class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50 text-sm">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="font-black text-teal-400 text-lg flex items-center gap-2">
+                <span class="bg-teal-500 text-slate-950 rounded-full w-8 h-8 flex items-center justify-center font-extrabold text-sm">ᱥ</span>
+                <span>संथाल पोर्टल</span>
+            </a>
+            <div class="hidden lg:flex space-x-6 font-semibold text-slate-300">
+                <a href="index.html" class="hover:text-teal-400 transition">होम</a>
+                <a href="jharkhand.html" class="text-teal-400 border-b-2 border-teal-400 pb-1">झारखंड</a>
+                <a href="nepal.html" class="hover:text-teal-400 transition">नेपाल</a>
+                <a href="odisha.html" class="hover:text-teal-400 transition">ओडिशा</a>
+                <a href="westbengal.html" class="hover:text-teal-400 transition">पश्चिम बंगाल</a>
+                <a href="international_mp.html" class="hover:text-teal-400 transition">BD, भूटान व MP</a>
+            </div>
+        </div>
+        <div class="lg:hidden flex overflow-x-auto space-x-4 px-4 py-2 bg-slate-950 border-t border-slate-800 text-xs font-semibold text-slate-300">
+            <a href="index.html" class="whitespace-nowrap">होम</a>
+            <a href="jharkhand.html" class="text-teal-400 whitespace-nowrap">झारखंड</a>
+            <a href="nepal.html" class="whitespace-nowrap">नेपाल</a>
+            <a href="odisha.html" class="whitespace-nowrap">ओडिशा</a>
+            <a href="westbengal.html" class="whitespace-nowrap">पश्चिम बंगाल</a>
+            <a href="international_mp.html" class="whitespace-nowrap">BD, भूटान व MP</a>
+        </div>
+    </nav>
+
+    <header class="py-10 text-center bg-gradient-to-r from-teal-950 to-slate-950 px-4">
+        <h1 class="text-3xl font-extrabold text-white">झारखंड में संथाल समुदाय एवं गाँव</h1>
+        <p class="text-slate-400 text-sm mt-2">संथाल परगना और कोल्हान प्रमंडल के सभी जिले, ब्लॉक एवं ऐतिहासिक गाँव</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div id="map" class="h-80 rounded-xl mb-8 border border-slate-800"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+            <div class="bg-slate-900 p-5 rounded-xl border border-slate-800">
+                <h2 class="text-lg font-bold text-teal-400 mb-3">📍 संथाल परगना प्रमंडल</h2>
+                <div class="space-y-3">
+                    <div class="bg-slate-950 p-3 rounded border border-slate-800">
+                        <strong class="text-white">साहिबगंज:</strong> बरहेट, बोरियो ब्लॉक → गाँव: भोगनाडीह (सिधु-कान्हू क्रांति भूमि), पंचकठिया।
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded border border-slate-800">
+                        <strong class="text-white">दुमका:</strong> काठीगुंड, शिकारीपाड़ा, गोपीकांदर → गाँव: असनबनी, सरुआपानी, रामगढ़।
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded border border-slate-800">
+                        <strong class="text-white">पाकुड़:</strong> लिट्टीपाड़ा, अमड़ापाड़ा → गाँव: धरमपुर, सिमलोंग संथाल टोले।
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 p-5 rounded-xl border border-slate-800">
+                <h2 class="text-lg font-bold text-indigo-400 mb-3">📍 कोल्हान एवं छोटानागपुर</h2>
+                <div class="space-y-3">
+                    <div class="bg-slate-950 p-3 rounded border border-slate-800">
+                        <strong class="text-white">पूर्वी सिंहभूम:</strong> घाटशिला, मुसाबनी, चाकुलिया → गाँव: गोटाशिला, काशियाबेडा, धालभूमगढ़।
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded border border-slate-800">
+                        <strong class="text-white">जामताड़ा व गोड्डा:</strong> नाला, सुंदरपहाड़ी → गाँव: बंझी, बोअरीजोर क्षेत्र।
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const map = L.map('map').setView([24.26, 87.25], 8);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        L.marker([24.83, 87.65]).addTo(map).bindPopup('<b>भोगनाडीह (साहिबगंज)</b><br>1855 हूल क्रांति गाँव');
+        L.marker([24.26, 87.25]).addTo(map).bindPopup('<b>दुमका</b><br>काठीकुंड व शिकारीपाड़ा गाँव');
+    </script>
+</body>
+</html>
